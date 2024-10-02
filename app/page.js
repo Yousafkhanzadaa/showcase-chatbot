@@ -5,6 +5,7 @@ import Features from './components/Features'
 import Testimonial from './components/Testimonial'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
+import Script from 'next/script';
 
 export default function Home() {
   return (
@@ -23,6 +24,23 @@ export default function Home() {
         <CTA />
       </main>
       <Footer />
+      <Script id="voiceflow-widget" strategy="afterInteractive">
+        {`
+          (function(d, t) {
+              var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+              v.onload = function() {
+                window.voiceflow.chat.load({
+                  verify: { projectID: '66f97d87b182bf980ceb6232' },
+                  url: 'https://general-runtime.voiceflow.com',
+                  versionID: 'production'
+                });
+              }
+              v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; 
+              v.type = "text/javascript"; 
+              s.parentNode.insertBefore(v, s);
+          })(document, 'script');
+        `}
+      </Script>
     </div>
   )
 }
